@@ -1,40 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>User Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('stylesheet') }}">
+    <title>User Login</title>
 </head>
 <body>
-  <main class="container">
-    <div class="cards">
-      <img src="assets/images/avatar-jessica.jpeg" class="avatar-image">
-      <div class="name"><strong>User Login</strong></div>
-      <div class="inputs">
-        <input type="text" class="input-box" placeholder="Username" aria-label="Username">
-        <input type="password" class="input-box" placeholder="Password" aria-label="Password">
-        <input type="submit" class="submit" placeholder="Submit" aria-label="Submit">
-      </div>
-    </div>
-  </main>
+    <main class="container">
+        <div class="cards">
+            <img
+                src="assets/images/avatar-jessica.jpeg"
+                class="avatar-image"
+                alt="User avatar"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="name"><strong>User Login</strong></div>
+
+            <form class="inputs" method="POST" action="{{ url_for('login') }}">
+                <input
+                    type="text"
+                    name="username"
+                    class="input-box"
+                    placeholder="Username"
+                    aria-label="Username"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    class="input-box"
+                    placeholder="Password"
+                    aria-label="Password"
+                    required
+                >
+
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+
+                <button type="submit" class="submit">Submit</button>
+            </form>
+        </div>
+    </main>
 </body>
-   <script>
-    const submit = document.querySelector(".submit");
-
-submit.addEventListener("click", function () {
-    const username = document.querySelectorAll(".input-box")[0].value.trim();
-    const password = document.querySelectorAll(".input-box")[1].value;
-
-    if (username === "" || password === "") {
-        alert("Please enter username and password");
-    } 
-    else {
-        window.location.href="home.html";
-    }
-    
-    
-
-});
-   </script>
 </html>

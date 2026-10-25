@@ -4,9 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('stylesheet') }}">
     <title>QR Verification</title>
 </head>
 <body>
-    <h1>QR generated successfully</h1>
+    <main class="container">
+        <div class="cards">
+            <h1>QR Verification</h1>
+
+            <p class="level-badge">LEVEL {{ level }}</p>
+
+            <h2>{{ content }}</h2>
+
+            <p>
+                This content corresponds to the level selected
+                on the laptop.
+            </p>
+        </div>
+    </main>
 </body>
 </html>

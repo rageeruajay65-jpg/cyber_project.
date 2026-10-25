@@ -1,14 +1,46 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('stylesheet') }}">
+    <title>Home</title>
 </head>
 <body>
-  <main class="container">
-    <a href="issue.html" class="issue-button"><strong>ISSUE</strong></a>
-  </main>
+    <main class="container">
+        <div class="cards">
+            <h1>Choose Level</h1>
+            <p>Select the content that should appear on the phone.</p>
+
+            <form action="{{ url_for('set_level') }}"
+                  method="POST"
+                  class="level-form">
+
+                <label for="level">Select a level:</label>
+
+                <select id="level" name="level" class="input-box">
+                    <option value="1"
+                        {% if selected_level == '1' %}selected{% endif %}>
+                        Level 1
+                    </option>
+
+                    <option value="2"
+                        {% if selected_level == '2' %}selected{% endif %}>
+                        Level 2
+                    </option>
+
+                    <option value="3"
+                        {% if selected_level == '3' %}selected{% endif %}>
+                        Level 3
+                    </option>
+                </select>
+
+                <button type="submit" class="issue-button">
+                    ISSUE QR
+                </button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

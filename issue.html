@@ -1,17 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Issue</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('stylesheet') }}">
+    <title>Issue QR</title>
 </head>
 <body>
-  <main class="container">
-    <div class="cards">
-      <img src="assets/images/githubio.png" class="qr-image" alt="QR code">
-      <div class="test-text"><strong>Test text: ISSUE-48213</strong></div>
-    </div>
-  </main>
+    <main class="container">
+        <div class="cards">
+            <h1>Scan the QR Code</h1>
+
+            <img
+                src="{{ url_for('qr_image') }}"
+                class="qr-image"
+                alt="Fixed QR code"
+            >
+
+            <p>
+                Selected level:
+                <strong>{{ selected_level }}</strong>
+            </p>
+
+            <p class="small-note">
+                Scan this QR code with your phone to see the content.
+            </p>
+
+            <a href="{{ url_for('home') }}" class="text-link">
+                Change Level
+            </a>
+        </div>
+    </main>
 </body>
 </html>
