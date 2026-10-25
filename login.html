@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>User Login</title>
+</head>
+<body>
+  <main class="container">
+    <div class="cards">
+      <img src="assets/images/avatar-jessica.jpeg" class="avatar-image">
+      <div class="name"><strong>User Login</strong></div>
+      <div class="inputs">
+        <input type="text" class="input-box" placeholder="Username" aria-label="Username">
+        <input type="password" class="input-box" placeholder="Password" aria-label="Password">
+        <input type="submit" class="submit" placeholder="Submit" aria-label="Submit">
+      </div>
+    </div>
+  </main>
+</body>
+   <script>
+    const submit = document.querySelector(".submit");
+
+submit.addEventListener("click", function () {
+    const username = document.querySelectorAll(".input-box")[0].value.trim();
+    const password = document.querySelectorAll(".input-box")[1].value;
+
+    if (username === "" || password === "") {
+        alert("Please enter username and password");
+    } 
+    else {
+        window.location.href="home.html";
+    }
+    
+    
+
+});
+   </script>
+</html>
