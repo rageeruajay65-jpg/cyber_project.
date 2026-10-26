@@ -8,7 +8,21 @@
 </head>
 <body>
   <main class="container">
-    <a href="issue.html" class="issue-button"><strong>ISSUE</strong></a>
+    <div class="cards">
+      <div class="name"><strong>Select Level</strong></div>
+
+      <form action="/set-level" method="POST" class="inputs">
+        <select name="level" class="input-box" required>
+          <option value="1">Level 1</option>
+          <option value="2">Level 2</option>
+          <option value="3">Level 3</option>
+        </select>
+
+        <button type="submit" class="issue-button">
+          <strong>ISSUE</strong>
+        </button>
+      </form>
+    </div>
   </main>
 </body>
 </html>
