@@ -178,3 +178,30 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+/* ---------- level selection ---------- */
+
+select.input-box {
+    cursor: pointer;
+}
+
+.issue-button {
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+button.issue-button {
+    transition: background-color 0.1s ease, color 0.5s ease;
+}
+
+button.issue-button:hover {
+    background-color: hsl(75, 94%, 57%);
+    color: black;
+}
+
+.bio {
+    overflow-wrap: anywhere;
+}
