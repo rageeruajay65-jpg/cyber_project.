@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+  <title>Home</title>
+</head>
+<body>
+  <main class="container">
+    <div class="cards">
+      <div class="inputs">
+        <textarea id="pasteBox" class="input-box paste-box" rows="4" placeholder="Paste text here" aria-label="Paste text"></textarea>
+        <button id="scannerButton" class="action-button" type="button"><strong>Open Scanner</strong></button>
+        <video id="scannerVideo" class="scanner-video" playsinline muted hidden></video>
+        <canvas id="scannerCanvas" hidden></canvas>
+        <div id="scannerStatus" class="status-text"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const pasteBox = document.getElementById("pasteBox");
+    const scannerButton = document.getElementById("scannerButton");
+    const video = document.getElementById("scannerVideo");
+    const canvas = document.getElementById("scannerCanvas");
+    const statusText = document.getElementById("scannerStatus");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+    let stream = null;
+    let frameId = null;
+
+    // Send the text to issue.html
+    function showIssue(text) {
+      closeScanner();
+      window.location.href = "issue.html?text=" + encodeURIComponent(text);
+    }
+
+    // Option 1: paste text (or press Enter)
+    pasteBox.addEventListener("paste", () => {
+      setTimeout(() => {
+        const text = pasteBox.value.trim();
+        if (text) showIssue(text);
+      }, 0);
+    });
+    pasteBox.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        const text = pasteBox.value.trim();
+        if (text) showIssue(text);
+      }
+    });
+
+    // Option 2: open the camera and scan a QR code
+    async function openScanner() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        video.srcObject = stream;
+        await video.play();
+        video.hidden = false;
+        scannerButton.innerHTML = "<strong>Close Scanner</strong>";
+        statusText.textContent = "Point the camera at the QR code";
+        scanFrame();
+      } catch (err) {
+        statusText.textContent = "Could not open the camera. Allow camera access (page must run on https or localhost).";
+      }
+    }
+
+    function closeScanner() {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = null;
+      if (stream) stream.getTracks().forEach((track) => track.stop());
+      stream = null;
+      video.hidden = true;
+      scannerButton.innerHTML = "<strong>Open Scanner</strong>";
+    }
+
+    function scanFrame() {
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const image = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(image.data, image.width, image.height);
+        if (code && code.data) {
+          showIssue(code.data);
+          return;
+        }
+      }
+      frameId = requestAnimationFrame(scanFrame);
+    }
+
+    scannerButton.addEventListener("click", () => {
+      if (stream) {
+        closeScanner();
+        statusText.textContent = "";
+      } else {
+        openScanner();
+      }
+    });
+  </script>
+</body>
+</html>

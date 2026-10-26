@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Your Issue</title>
+</head>
+<body>
+  <main class="container">
+    <div class="cards">
+      <div class="name"><strong>YOUR ISSUE</strong></div>
+      <div id="issueText" class="test-text"><strong>No issue received yet</strong></div>
+    </div>
+  </main>
+
+  <script>
+    // Shows the text that was scanned (or pasted) on home.html
+    const text = new URLSearchParams(window.location.search).get("text");
+    if (text) {
+      document.getElementById("issueText").firstElementChild.textContent = text;
+    }
+  </script>
+</body>
+</html>

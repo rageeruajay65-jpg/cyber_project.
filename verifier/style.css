@@ -1,0 +1,180 @@
+@font-face {
+    font-family: "Inter";
+    src:url("assets/fonts/Inter-VariableFont_slnt\,wght.ttf");
+}
+
+body {
+    margin: 0;
+    background-color: hsl(0, 0%, 8%);
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.cards {
+    width: 350px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: hsl(0, 0%, 12%);
+    padding: 20px;
+}
+
+.avatar-image {
+    margin: 20px;
+    height: 90px;
+    width: 90px;
+    border-radius: 50px;
+}
+
+.location {
+    margin: 10px;
+    font-family: "Inter";
+    font-size: 15px;
+    color: hsl(75, 94%, 57%);
+}
+
+.name {
+    margin: 0;
+    font-family: "Inter";
+    font-size: 30px;
+    color: white;
+}
+
+.bio {
+    margin: 25px;
+    font-family: "Inter";
+    font-size: 15px;
+    color: white;
+}
+
+/* ---------- login.html ---------- */
+
+.inputs {
+    display: flex;
+    margin: 25px 15px 15px;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-box {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: hsl(0, 0%, 20%);
+    color: white;
+    font-family: "Inter";
+    font-size: 15px;
+}
+
+.input-box::placeholder {
+    color: hsl(0, 0%, 60%);
+}
+
+.input-box:focus-visible {
+    outline: 3px solid hsl(75, 94%, 57%);
+    outline-offset: 3px;
+}
+
+.submit {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: hsl(0, 0%, 20%);
+    color: white;
+    font-family: "Inter";
+    font-size: 15px;
+}
+
+.submit:hover {
+    color: hsl(75, 94%, 57%);
+}
+
+/* ---------- home.html ---------- */
+
+.issue-button {
+    display: block;
+    padding: 20px 60px;
+    border-radius: 10px;
+    background-color: hsl(0, 0%, 20%);
+    color: white;
+    font-family: "Inter";
+    font-size: 20px;
+
+    transition: background-color 0.1s ease, color 0.5s ease;
+}
+
+.issue-button:hover {
+    background-color: hsl(75, 94%, 57%);
+    color: black;
+}
+
+.issue-button:focus-visible {
+    outline: 3px solid hsl(75, 94%, 57%);
+    outline-offset: 3px;
+}
+
+/* ---------- issue.html ---------- */
+
+.qr-image {
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: white;
+    object-fit: contain;
+}
+
+.test-text {
+    margin: 10px;
+    font-family: "Inter";
+    font-size: 15px;
+    color: hsl(75, 94%, 57%);
+}
+
+/* ---------- shared (kept from your original) ---------- */
+
+.socials {
+    display: flex;
+    margin: 15px;
+    flex-direction: column;
+    align-content: center;
+    gap: 15px;
+}
+
+.socials-box {
+    display: block;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: hsl(0, 0%, 20%);
+    color: white;
+    font-family: "Inter";
+
+    transition: background-color 0.1s ease, color 0.5s ease;
+}
+
+.socials-box:hover {
+    background-color: hsl(75, 94%, 57%);
+    color: black;
+}
+
+.socials-box:focus-visible {
+    outline: 3px solid hsl(75, 94%, 57%);
+    outline-offset: 3px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
